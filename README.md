@@ -28,6 +28,12 @@ conda env create -f environment.yml
 ### Data Preparation 
 Download from this [URL](https://drive.google.com/drive/folders/1fxh6ngdv4tYkTqPm2SnnZTabkuIucX8D?usp=drive_link) and put the unzipped folder in /Data.
 
+### Text-Image Alignment Evaluation
+```
+cd Scripts
+python *_analysis.py
+```
+
 ### Citation
 If helpful, please consider citing us as follows:
 
