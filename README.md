@@ -15,6 +15,8 @@ Code space for "Perturbations Don't Always Aid Protection"
     - style transferring prompts
 - Scripts
     - SDGen.py (Image Generation by Stable Diffusion)
+    - CP_scores.py (functions to call PAC-S++ and CLIP-S metrics which calculate text-image alignment)
+    - *_analysis.py (script to compute PAC-S++ and CLIP-S among realistic image domain and artwork image domain, save the output in the format of .pkl)
 - environment.yml
 
 ### Download and set-up environment
