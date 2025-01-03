@@ -1,8 +1,6 @@
 import os
 import json
-import logging
 from tqdm import tqdm
-import pandas as pd
 from PIL import Image
 
 import torch
@@ -10,18 +8,18 @@ from diffusers import StableDiffusionImg2ImgPipeline
 
 def get_args():
     import argparse
-    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser = argparse.ArgumentParser(description='Stable Diffusion generation.')
     parser.add_argument('--device', type=str, default="cuda", help='device')
     parser.add_argument('--model_id_or_path', type=str, default="runwayml/stable-diffusion-v1-5", help='model_id_or_path')
     parser.add_argument('--SEED', type=int, default=[9222, 42, 66, 123, 999], help='seeds')
     parser.add_argument('--STRENGTH', type=float, default=0.5, help='STRENGTH')
     parser.add_argument('--GUIDANCE', type=float, default=7.5, help='GUIDANCE')
     parser.add_argument('--NUM_STEPS', type=int, default=50, help='NUM_STEPS')
-    parser.add_argument('--caption_path', type=str, default="/home/qit220/Data/metadata.json", help='caption_path')
-    parser.add_argument('--ori_dataset_path', type=str, default="/home/qit220/Data/style_transfer_exp/wikiart_subset", help='ori_dataset_path')
-    parser.add_argument('--ori_save_path', type=str, default="/home/qit220/Data/style_transfer_exp/wikiart_subset_gen", help='ori_save_path')
-    parser.add_argument('--adv_dataset_path', type=str, default="/home/qit220/Data/style_transfer_exp/wikiart_subset_glaze", help='adv_dataset_path')
-    parser.add_argument('--adv_save_path', type=str, default="/home/qit220/Data/style_transfer_exp/wikiart_subset_glaze_gen", help='adv_save_path')
+    parser.add_argument('--caption_path', type=str, default="../RealisticImageDomain/Closely_modified_caption.json", help='caption_path')
+    parser.add_argument('--ori_dataset_path', type=str, default="../Data/Flickr8k_data/Flickr8k_ori", help='ori_dataset_path')
+    parser.add_argument('--ori_save_path', type=str, default="../Data/Flickr8k_data/Flickr8k_ori_gen_close", help='ori_save_path')
+    parser.add_argument('--adv_dataset_path', type=str, default="../Data/Flickr8k_data/Flickr8k_adv", help='adv_dataset_path')
+    parser.add_argument('--adv_save_path', type=str, default="../Data/Flickr8k_data/Flickr8k_adv_close", help='adv_save_path')
     return parser.parse_args()
 
 def main(args):
