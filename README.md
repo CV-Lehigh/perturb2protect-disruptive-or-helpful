@@ -1,5 +1,5 @@
-# PerturbationsDontAlwaysAidProtection
-Code space for "Perturbations Don't Always Aid Protection"
+# Disruptive Perturbation
+Official code space for "ARE PERTURBATIONS FOR IMAGE PROTECTION DISRUPTIVE TO IMAGE EDITING?"
 
 ### Directory Structure
 

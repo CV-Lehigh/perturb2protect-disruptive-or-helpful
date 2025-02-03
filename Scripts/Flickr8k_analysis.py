@@ -41,31 +41,36 @@ def main(args):
         prompt = caption
         results[img_name] = {}
         input_images = []
-        for seed in tqdm(args.SEED, colour="green", desc="Seeds", leave=True):
-            ori_image = Image.open(os.path.join(args.ori_dataset_path, str(seed) +'_'+ img_name + '.png'))
-            adv_image = Image.open(os.path.join(args.adv_dataset_path, str(seed) +'_'+ img_name + '.png'))
+        if os.path.exists(os.path.join(args.ori_dataset_path, str(args.SEED[0]) +'_'+ img_name + '.jpg')):
+            for seed in tqdm(args.SEED, colour="green", desc="Seeds", leave=True):
+                    ori_image = Image.open(os.path.join(args.ori_dataset_path, str(seed) +'_'+ img_name + '.jpg'))
+                    adv_image = Image.open(os.path.join(args.adv_dataset_path, str(seed) +'_'+ img_name + '.jpg'))
 
-            results[img_name] = {"ori_scores": {}, "adv_scores": {}}
-            input_images.extend([ori_image, adv_image])
-        
-        # Compute scores
-        clip_score = get_cp_score(clip_model, None, input_images, [prompt] * len(input_images), args.device, "clip")
+                    results[img_name] = {"ori_scores": {}, "adv_scores": {}}
+                    input_images.extend([ori_image, adv_image])
+            
+            # Compute scores
+            clip_score = get_cp_score(clip_model, None, input_images, [prompt] * len(input_images), args.device, "clip")
 
-        ori_clip_scores = clip_score[::2]
-        adv_clip_scores = clip_score[1::2]
+            ori_clip_scores = clip_score[::2]
+            adv_clip_scores = clip_score[1::2]
 
-        pac_score = get_cp_score(pac_model, pac_preprocess, input_images, [prompt] * len(input_images), args.device, "pac")
-        ori_pac_scores = pac_score[::2]
-        adv_pac_scores = pac_score[1::2]
+            pac_score = get_cp_score(pac_model, pac_preprocess, input_images, [prompt] * len(input_images), args.device, "pac")
+            ori_pac_scores = pac_score[::2]
+            adv_pac_scores = pac_score[1::2]
 
-        for i, seed in enumerate(args.SEED):
-            # Clip scores
-            results[img_name]["ori_scores"]["Seed_"+seed]["clip"] = ori_clip_scores[i]
-            results[img_name]["adv_scores"]["Seed_"+seed]["clip"] = adv_clip_scores[i]
+            for i, seed in enumerate(args.SEED):
+                if "Seed_"+str(seed) not in results[img_name]["ori_scores"]:
+                    results[img_name]["ori_scores"]["Seed_"+str(seed)] = {}
+                if "Seed_"+str(seed) not in results[img_name]["adv_scores"]:
+                    results[img_name]["adv_scores"]["Seed_"+str(seed)] = {}
+                # Clip scores
+                results[img_name]["ori_scores"]["Seed_"+str(seed)]["clip"] = ori_clip_scores[i]
+                results[img_name]["adv_scores"]["Seed_"+str(seed)]["clip"] = adv_clip_scores[i]
 
-            # PAC scores
-            results[img_name]["ori_scores"]["Seed_"+seed]["pac"] = ori_pac_scores[i]
-            results[img_name]["adv_scores"]["Seed_"+seed]["pac"] = adv_pac_scores[i]
+                # PAC scores
+                results[img_name]["ori_scores"]["Seed_"+str(seed)]["pac"] = ori_pac_scores[i]
+                results[img_name]["adv_scores"]["Seed_"+str(seed)]["pac"] = adv_pac_scores[i]
 
     import pickle
     with open(args.save_path, "wb") as file:
