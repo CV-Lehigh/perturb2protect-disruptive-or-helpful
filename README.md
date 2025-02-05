@@ -1,15 +1,14 @@
-# Disruptive Perturbation
-Official code space for "ARE PERTURBATIONS FOR IMAGE PROTECTION DISRUPTIVE TO IMAGE EDITING?"
+Official code space for paper "Is Perturbation-based Image Protection Disruptive to Image Editing?"
 
 ### Directory Structure
 
 - Data
-- Realistic Image Domain
+- Natural Scene Image Domain
     - img2img
         - Flickr8k original caption
         - Closely-modified caption
         - Extensively-modified caption
-    - style2style
+    - stylization
         - style transferring prompts
 - Artwork Image Domain
     - style transferring prompts
@@ -27,6 +26,10 @@ conda env create -f environment.yml
 ```
 ### Data Preparation 
 Download from this [URL](https://drive.google.com/drive/folders/1fxh6ngdv4tYkTqPm2SnnZTabkuIucX8D?usp=drive_link) and put the unzipped folder in /Data.
+
+### Model Preparation
+
+Download PAC-S++ model checkpoint from [PAC++_clip_ViT-L-14.pth](https://ailb-web.ing.unimore.it/publicfiles/pac++/PAC++_clip_ViT-L-14.pth) and put it in /model folder.
 
 ### Text-Image Alignment Evaluation
 ```

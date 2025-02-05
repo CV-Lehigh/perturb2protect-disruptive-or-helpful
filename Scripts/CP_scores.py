@@ -155,7 +155,7 @@ def pac_clip_score(images: list[Image], prompts: list[str], device, flag) -> lis
         model, preprocess = clip.load("ViT-L/14", device=device)
         model = model.to(device)
         model = model.float()
-        checkpoint = torch.load("/home/qit220/pytorch-stable-diffusion/eval/model/PAC++_clip_ViT-L-14.pth", map_location=device)
+        checkpoint = torch.load("./model/PAC++_clip_ViT-L-14.pth", map_location=device)
         model.load_state_dict(checkpoint['state_dict'], strict=False)
         model.eval()
     
