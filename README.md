@@ -21,10 +21,8 @@ The remarkable image generation capabilities of state-of-the-art diffusion model
     - *_analysis.py (script to compute PAC-S++ and CLIP-S among realistic image domain and artwork image domain, save the output in the format of .pkl)
 - environment.yml
 
-### Download and set-up environment
+### Set-up environment
 ```
-git clone https://github.com/CV-Lehigh/PerturbationsDontAlwaysAidProtection.git
-cd PerturbationsDontAlwaysAidProtection
 conda env create -f environment.yml
 ```
 ### Data Preparation 
