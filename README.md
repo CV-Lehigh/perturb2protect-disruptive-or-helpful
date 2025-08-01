@@ -40,4 +40,11 @@ python *_analysis.py
 
 ### Citation
 If helpful, please consider citing us as follows:
-
+```
+@article{tang2025perturbation,
+  title={Is Perturbation-Based Image Protection Disruptive to Image Editing?},
+  author={Tang, Qiuyu and Ayambem, Bonor and Chuah, Mooi Choo and Bharati, Aparna},
+  journal={2025 IEEE International Conference on Image Processing (ICIP)},
+  year={2025}
+}
+```
